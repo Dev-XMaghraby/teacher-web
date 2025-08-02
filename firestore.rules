@@ -1,0 +1,14 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // WARNING: TEMPORARY INSECURE RULES
+    // These rules allow any authenticated user to read and write all data.
+    // This is ONLY for initial setup to approve the first admin account.
+    // MUST be replaced with secure rules immediately after.
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
